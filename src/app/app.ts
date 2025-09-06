@@ -1,11 +1,15 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { MainPageComponent } from './pages/main-page/main-page/main-page.component';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { TuiTabs } from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,
-    MainPageComponent
+  imports: [
+    RouterModule,
+    RouterOutlet,
+    TuiTabs,
+    MainPageComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

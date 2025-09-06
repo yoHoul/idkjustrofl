@@ -1,1 +1,23 @@
-<app-main-page></app-main-page>
+<tui-tabs 
+class="menu-tabs" 
+[size]="'l'" 
+style="height: 38px;">
+  <a
+    tuiTab
+    routerLink="/main-page"
+    routerLinkActive="tui-tab_active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    style="margin-left: 24px;"
+  >
+    Главная
+  </a>
+  <a
+    tuiTab
+    routerLink="/placeholder-page"
+    routerLinkActive="tui-tab_active"
+  >
+    Ещё таб
+  </a>
+</tui-tabs>
+
+<router-outlet></router-outlet>
