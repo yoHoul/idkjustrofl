@@ -1,0 +1,47 @@
+.main-page {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: calc(100vh - 38px);
+    margin: 0;
+    padding: 0;
+}
+
+.tap-side {
+    width: 40%;
+    height: 100%;
+    background-color: rgb(255, 213, 213);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.money-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10%;
+
+    .text-top {
+        font-size: 60px;
+    }
+
+    .text-bottom {
+        font-size: 30px;
+    }
+}
+
+.money-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 15%;
+}
+
+.upgrade-side {
+    width: 60%;
+    height: 100%;
+    background-color: grey;
+}
