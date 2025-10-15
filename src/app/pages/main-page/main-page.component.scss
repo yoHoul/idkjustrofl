@@ -10,7 +10,7 @@
 .tap-side {
     width: 50%;
     height: 100%;
-    background-color: rgb(255, 213, 213);
+    background-color: var(--main-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,6 +21,7 @@
     flex-direction: column;
     text-align: center;
     margin-top: 10%;
+    color: var(--text-main-color);
 
     .text-top {
         font-size: 60px;
@@ -43,5 +44,5 @@
 .upgrade-side {
     width: 50%;
     height: 100%;
-    background-color: grey;
+    background-color: var(--main-color);
 }

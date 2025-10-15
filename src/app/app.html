@@ -1,7 +1,7 @@
 <tui-tabs 
 class="menu-tabs" 
 [size]="'l'" 
-style="height: 38px;">
+style="height: 38px; background-color: var(--main-color);">
   <a
     tuiTab
     routerLink="/main-page"
@@ -18,6 +18,18 @@ style="height: 38px;">
   >
     Heroes
   </a>
+  <span style="flex: 1 1 auto"></span>
+  <label class="theme-switcher">
+    <span class="theme-text">Ослепнуть нахуй -></span>
+    <input
+      tuiSwitch
+      type="checkbox"
+      [(ngModel)]="isDark"
+      (ngModelChange)="changeTheme($event)"
+      [showIcons]="true"
+      [size]="'m'"
+    />
+  </label>
 </tui-tabs>
 
 <router-outlet></router-outlet>

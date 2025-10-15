@@ -1,0 +1,12 @@
+:root {
+  /* цвета политры */
+  --main-color: #04001b;
+  --main-color-2: #FFFFFF;
+
+  /* цвета текста */
+  --text-main-color: #FFFFFF;
+  --text-secondary-color: #7e7e7e;
+
+  /* цвета для тайги */
+  --tui-tabs-border: #3f3f3f;
+}
