@@ -2,13 +2,14 @@
   <div class="tap-side">
     <div class="money-text">
       <p class="text-top">
-        999.999.999 Flux
+        {{money}} Flux
       </p>
       <p class="text-bottom">
         9.999 Flux per second
       </p>
     </div>
-    <div class="money-icon">
+    <div class="money-icon"
+    (click)="imgClick()">
       <img src="assets/shared-img/clickicon.png" alt="">
     </div>
   </div>
