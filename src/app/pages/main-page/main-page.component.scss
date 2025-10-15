@@ -45,4 +45,28 @@
     width: 50%;
     height: 100%;
     background-color: var(--main-color);
+    text-align: center;
+    padding-right: 15px;
+}
+
+.upgrade-header {
+    font-size: 60px;
+    color: var(--text-main-color);
+    padding-top: 15px;
+}
+
+.accordion-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion {
+    width: 24vw;
+    height: calc(100vh - 150px);
+}
+
+.accordion-text {
+    font-size: 42px;
+    color: var(--text-main-color);
+    margin-bottom: 15px;
 }
