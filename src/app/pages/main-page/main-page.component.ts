@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
+  money: number = 0;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  imgClick() {
+    this.money += 1;
   }
 
 }

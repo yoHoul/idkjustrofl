@@ -4,7 +4,7 @@
   },
   "clickerData": [
     {
-      "icon": "assets/clicker/upClicker/1-click-power.svg",
+      "icon": "assets/clicker/upClicker/1-auto-click.svg",
       "name": "Click Power",
       "baseCost": 10,
       "income": 1,
