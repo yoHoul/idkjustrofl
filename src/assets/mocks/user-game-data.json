@@ -1,0 +1,17 @@
+{
+  "balance": 0,
+  "totalIncome": 0,
+  "haveAccess": {
+    "heroes": false
+  },
+  "clickerData": [
+    { "id": 1, "amount": 0 },
+    { "id": 2, "amount": 0 },
+    { "id": 3, "amount": 0 },
+    { "id": 4, "amount": 0 }
+  ],
+  "heroesData": [
+    { "id": 101, "haveIt": false }
+  ]
+}
+

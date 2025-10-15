@@ -1,65 +1,44 @@
 {
-  "haveAccess": {
-    "heroes": false
-  },
   "clickerData": [
     {
-      "icon": "assets/clicker/upClicker/1-auto-click.svg",
+      "id": 1,
+      "icon": "assets/clicker/upClicker/1-click-power.svg",
       "name": "Click Power",
       "baseCost": 10,
       "income": 1,
-      "amount": 0,
       "costMultiplier": 1.15
     },
     {
+      "id": 2,
       "icon": "assets/clicker/upClicker/2-bee.png",
       "name": "Bee",
       "baseCost": 50,
       "income": 2,
-      "amount": 0,
       "costMultiplier": 1.2
     },
     {
+      "id": 3,
       "icon": "assets/clicker/upClicker/3-blue-crab.png",
       "name": "Blue Crab",
       "baseCost": 200,
       "income": 8,
-      "amount": 0,
       "costMultiplier": 1.25
     },
     {
+      "id": 4,
       "icon": "assets/clicker/upClicker/4-bone-blade.png",
       "name": "Bone Blade",
       "baseCost": 1000,
       "income": 40,
-      "amount": 0,
       "costMultiplier": 1.3
     }
   ],
   "heroesData": [
     {
+      "id": 101,
       "icon": "assets/heroes/1-knight.png",
-      "name": "Knight",
-      "baseCost": 10000,
-      "income": 100,
-      "amount": 0,
-      "costMultiplier": 1.2
-    },
-    {
-      "icon": "assets/heroes/2-gunslinger.png",
-      "name": "Gunslinger",
-      "baseCost": 50000,
-      "income": 500,
-      "amount": 0,
-      "costMultiplier": 1.25
-    },
-    {
-      "icon": "assets/heroes/3-dracolyte.png",
-      "name": "Dracolyte",
-      "baseCost": 250000,
-      "income": 2500,
-      "amount": 0,
-      "costMultiplier": 1.3
+      "name": "Knight Banner",
+      "baseCost": 10000
     }
   ]
 }
