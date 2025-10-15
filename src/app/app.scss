@@ -1,0 +1,27 @@
+.theme-switcher {
+    display:flex; 
+    align-items:center; 
+    gap:8px; 
+    margin-right:16px;
+    color: black;
+}
+
+.theme-text {
+    color: var(--text-main-color)
+}
+
+// бг верхнейт табы
+:host ::ng-deep tui-tabs.menu-tabs {
+    background-color: var(--main-color) !important;
+}
+
+// цвет текста ссылок в табах
+:host ::ng-deep tui-tabs.menu-tabs a[tuiTab] {
+    color: var(--text-main-color) !important;
+}
+
+// нижняя линия у табов
+:host ::ng-deep tui-tabs.menu-tabs {
+    border-bottom: 1px solid var(--tui-tabs-border) !important;
+    box-shadow: inset 0 -1px var(--tui-tabs-border) !important;
+}
