@@ -3,6 +3,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TuiSwitch, TuiTabs } from '@taiga-ui/kit';
 import { Subscription } from 'rxjs';
+import { GameDataService } from './core/services/game-data.service';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +23,10 @@ export class App implements OnInit {
   private subscription?: Subscription;
   isDark!: boolean;
 
-  constructor() {}
+  constructor(private gameDataService: GameDataService) {}
 
   ngOnInit() {
+    this.gameDataService.loadAll();
     this.isDark = true;
     this.changeTheme(true);
   }
