@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, combineLatest, interval, map } from 'rxjs';
-import { IAllGameData, IUserGameData } from '../../shared/types/game-data';
+import { IAllGameData, IUserGameData, IClickerGameData } from '../../shared/types/game-data';
 import { ApiDataStorageService } from './api-data-storage.service';
 
 @Injectable({
@@ -130,6 +130,36 @@ export class GameDataService {
     } else {
       return scaled.toFixed(2) + suffix;
     }
+  }
+
+  isUpgradeUnlocked(upgradeId: number): boolean {
+    const userData = this.userDataSubject.value;
+    if (!userData) return false;
+    
+    // первый ап всегда разблокирован
+    if (upgradeId === 1) return true;
+    
+    // поиск предыдущего апа
+    const gameData = this.gameDataSubject.value;
+    if (!gameData) return false;
+    
+    const currentIndex = gameData.clickerData.findIndex(u => u.id === upgradeId);
+    if (currentIndex <= 0) return false;
+    
+    const previousUpgradeId = gameData.clickerData[currentIndex - 1].id;
+    const previousUserUpgrade = userData.clickerData.find(u => u.id === previousUpgradeId);
+    
+    // предыдущий ап должен быть куплен
+    return previousUserUpgrade ? previousUserUpgrade.amount > 0 : false;
+  }
+
+  getUnlockedUpgrades(): IClickerGameData[] {
+    const gameData = this.gameDataSubject.value;
+    const userData = this.userDataSubject.value;
+    
+    if (!gameData || !userData) return [];
+    
+    return gameData.clickerData.filter(upgrade => this.isUpgradeUnlocked(upgrade.id));
   }
 
 }

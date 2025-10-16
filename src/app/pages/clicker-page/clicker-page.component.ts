@@ -29,8 +29,14 @@ export class ClickerPageComponent implements OnInit {
     
     this.gameData$.subscribe(data => {
       if (data) {
-        this.clickerData = data.clickerData;
         this.heroesData = data.heroesData || [];
+      }
+    });
+    
+    // обновление списка при покупке в кликерах
+    this.gameData.userData$.subscribe((userData) => {
+      if (userData) {
+        this.clickerData = this.gameData.getUnlockedUpgrades();
       }
     });
   }
