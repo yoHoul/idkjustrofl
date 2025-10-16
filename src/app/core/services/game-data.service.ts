@@ -12,8 +12,8 @@ export class GameDataService {
 
   gameData$ = this.gameDataSubject.asObservable();
   userData$ = this.userDataSubject.asObservable();
-  balance$ = this.userData$.pipe(map(u => u?.balance ?? 0));
-  income$ = this.userData$.pipe(map(u => u?.totalIncome ?? 0));
+  balance$ = this.userData$.pipe(map(u => u?.balance ?? 0n));
+  income$ = this.userData$.pipe(map(u => u?.totalIncome ?? 0n));
   private incomeSub?: Subscription;
 
 
@@ -37,7 +37,7 @@ export class GameDataService {
     this.isLoaded = true;
   }
 
-  incrementBalance(delta: number): void {
+  incrementBalance(delta: bigint): void {
     const current = this.userDataSubject.value;
     if (!current) return;
     this.userDataSubject.next({
@@ -57,8 +57,9 @@ export class GameDataService {
     
     if (!upgrade || !userUpgrade) return false;
     
-    // экспоненциальная прогрессия цен
-    const currentCost = Math.floor(upgrade.baseCost * Math.pow(upgrade.costMultiplier, userUpgrade.amount));
+    // экспоненциальная прогрессия цен с BigInt
+    const multiplier = Math.pow(upgrade.costMultiplier, userUpgrade.amount);
+    const currentCost = BigInt(Math.floor(Number(upgrade.baseCost) * multiplier));
     
     if (userData.balance < currentCost) return false;
     
@@ -78,26 +79,27 @@ export class GameDataService {
     return true;
   }
 
-  getUpgradeCost(upgradeId: number): number {
+  getUpgradeCost(upgradeId: number): bigint {
     const gameData = this.gameDataSubject.value;
     const userData = this.userDataSubject.value;
     
-    if (!gameData || !userData) return 0;
+    if (!gameData || !userData) return 0n;
     
     const upgrade = gameData.clickerData.find(u => u.id === upgradeId);
     const userUpgrade = userData.clickerData.find(u => u.id === upgradeId);
     
-    if (!upgrade || !userUpgrade) return 0;
+    if (!upgrade || !userUpgrade) return 0n;
     
-    return Math.floor(upgrade.baseCost * Math.pow(upgrade.costMultiplier, userUpgrade.amount));
+    const multiplier = Math.pow(upgrade.costMultiplier, userUpgrade.amount);
+    return BigInt(Math.floor(Number(upgrade.baseCost) * multiplier));
   }
 
-  private calculateTotalIncome(gameData: IAllGameData, userData: IUserGameData): number {
+  private calculateTotalIncome(gameData: IAllGameData, userData: IUserGameData): bigint {
     return userData.clickerData.reduce((total, userUpgrade) => {
       const upgrade = gameData.clickerData.find(u => u.id === userUpgrade.id);
       if (!upgrade) return total;
-      return total + (upgrade.income * userUpgrade.amount);
-    }, 0);
+      return total + (upgrade.income * BigInt(userUpgrade.amount));
+    }, 0n);
   }
 
   private startIncomeLoop(): void {
@@ -105,20 +107,21 @@ export class GameDataService {
     this.incomeSub = interval(1000).subscribe(() => {
       const u = this.userDataSubject.value;
       if (!u) return;
-      if (u.totalIncome && u.totalIncome !== 0) {
+      if (u.totalIncome && u.totalIncome !== 0n) {
         this.incrementBalance(u.totalIncome);
       }
     });
   }
 
-  formatNumber(num: number): string {
-    if (num < 1000) return num.toString();
+  formatNumber(num: bigint): string {
+    const numStr = num.toString();
+    if (num < 1000n) return numStr;
     
     const suffixes = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'Ud', 'Dd', 'Td'];
-    const tier = Math.floor(Math.log10(num) / 3);
+    const tier = Math.floor((numStr.length - 1) / 3);
     const suffix = suffixes[tier] || '';
     const scale = Math.pow(10, tier * 3);
-    const scaled = num / scale;
+    const scaled = Number(num) / scale;
     
     if (scaled >= 100) {
       return Math.floor(scaled) + suffix;

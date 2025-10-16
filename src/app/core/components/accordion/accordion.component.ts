@@ -20,11 +20,11 @@ export class AccordionComponent {
     this.gameData.buyUpgrade(upgradeId);
   }
 
-  getUpgradeCost(upgradeId: number): number {
+  getUpgradeCost(upgradeId: number): bigint {
     return this.gameData.getUpgradeCost(upgradeId);
   }
 
-  formatNumber(num: number): string {
+  formatNumber(num: bigint): string {
     return this.gameData.formatNumber(num);
   }
 }
