@@ -6,12 +6,12 @@ import { AccordionComponent } from "../../core/components/accordion/accordion.co
 import { IAllGameData, IClickerGameData, IHeroesData } from '../../shared/types/game-data';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss'],
+  selector: 'app-clicker-page',
+  templateUrl: './clicker-page.component.html',
+  styleUrls: ['./clicker-page.component.scss'],
   imports: [AccordionComponent, AsyncPipe],
 })
-export class MainPageComponent implements OnInit {
+export class ClickerPageComponent implements OnInit {
   balance$!: Observable<number>;
   income$!: Observable<number>;
   gameData$!: Observable<IAllGameData | null>;

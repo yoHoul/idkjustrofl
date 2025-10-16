@@ -1,12 +1,12 @@
 import { RouterModule, Routes } from '@angular/router';
-import { MainPageComponent } from './pages/main-page/main-page.component';
+import { ClickerPageComponent } from './pages/clicker-page/clicker-page.component';
 import { NgModule } from '@angular/core';
-import { PlaceholderPageComponent } from './pages/placeholder-page/placeholder-page.component';
+import { HeroesPageComponent } from './pages/heroes-page/heroes-page.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'main-page', pathMatch: 'full' },
-  { path: 'main-page', component: MainPageComponent },
-  { path: 'placeholder-page', component: PlaceholderPageComponent },
+  { path: '', redirectTo: 'clicker-page', pathMatch: 'full' },
+  { path: 'clicker-page', component: ClickerPageComponent },
+  { path: 'heroes-page', component: HeroesPageComponent },
 ];
 
 @NgModule({
