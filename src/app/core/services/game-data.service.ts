@@ -111,4 +111,22 @@ export class GameDataService {
     });
   }
 
+  formatNumber(num: number): string {
+    if (num < 1000) return num.toString();
+    
+    const suffixes = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'Ud', 'Dd', 'Td'];
+    const tier = Math.floor(Math.log10(num) / 3);
+    const suffix = suffixes[tier] || '';
+    const scale = Math.pow(10, tier * 3);
+    const scaled = num / scale;
+    
+    if (scaled >= 100) {
+      return Math.floor(scaled) + suffix;
+    } else if (scaled >= 10) {
+      return scaled.toFixed(1) + suffix;
+    } else {
+      return scaled.toFixed(2) + suffix;
+    }
+  }
+
 }
