@@ -49,4 +49,8 @@ export class ClickerPageComponent implements OnInit {
     return this.gameData.formatNumber(num);
   }
 
+  get zeroBigInt(): bigint {
+    return 0n;
+  }
+
 }
