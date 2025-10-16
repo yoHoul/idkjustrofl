@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiScrollbar } from '@taiga-ui/core';
 import { IClickerGameData, IHeroesData } from '../../../shared/types/game-data';
+import { GameDataService } from '../../services/game-data.service';
 
 @Component({
   selector: 'app-accordion',
@@ -12,4 +13,14 @@ import { IClickerGameData, IHeroesData } from '../../../shared/types/game-data';
 export class AccordionComponent {
   @Input() clickerData: IClickerGameData[] = [];
   @Input() heroesData: IHeroesData[] = [];
+
+  constructor(private gameData: GameDataService) {}
+
+  buyUpgrade(upgradeId: number): void {
+    this.gameData.buyUpgrade(upgradeId);
+  }
+
+  getUpgradeCost(upgradeId: number): number {
+    return this.gameData.getUpgradeCost(upgradeId);
+  }
 }

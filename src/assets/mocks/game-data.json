@@ -6,7 +6,7 @@
       "name": "Auto attack",
       "baseCost": 10,
       "income": 1,
-      "costMultiplier": 1.15
+      "costMultiplier": 1.1
     },
     {
       "id": 2,
@@ -14,167 +14,167 @@
       "name": "Bee",
       "baseCost": 50,
       "income": 2,
-      "costMultiplier": 1.2
+      "costMultiplier": 1.12
     },
     {
       "id": 3,
       "icon": "assets/clicker/upClicker/3-blue-crab.png",
       "name": "Blue crab",
       "baseCost": 200,
-      "income": 8,
-      "costMultiplier": 1.25
+      "income": 5,
+      "costMultiplier": 1.13
     },
     {
       "id": 4,
       "icon": "assets/clicker/upClicker/4-bone-blade.png",
       "name": "Bone blade",
-      "baseCost": 10,
-      "income": 40,
-      "costMultiplier": 1.3
+      "baseCost": 1000,
+      "income": 15,
+      "costMultiplier": 1.14
     },
     {
       "id": 5,
       "icon": "assets/clicker/upClicker/5-shadow-bat.png",
       "name": "Shadow bat",
-      "baseCost": 50,
-      "income": 200,
-      "costMultiplier": 1.35
+      "baseCost": 5000,
+      "income": 40,
+      "costMultiplier": 1.15
     },
     {
       "id": 6,
       "icon": "assets/clicker/upClicker/6-shadow-crab.png",
       "name": "Shadow crab",
-      "baseCost": 250,
-      "income": 10,
-      "costMultiplier": 1.4
+      "baseCost": 25000,
+      "income": 100,
+      "costMultiplier": 1.16
     },
     {
       "id": 7,
       "icon": "assets/clicker/upClicker/7-bladebot.png",
       "name": "Bladebot",
-      "baseCost": 10,
-      "income": 50,
-      "costMultiplier": 1.45
+      "baseCost": 100000,
+      "income": 250,
+      "costMultiplier": 1.17
     },
     {
       "id": 8,
       "icon": "assets/clicker/upClicker/8-magmito.png",
       "name": "Magmito",
-      "baseCost": 50,
-      "income": 250,
-      "costMultiplier": 1.5
+      "baseCost": 500000,
+      "income": 500,
+      "costMultiplier": 1.18
     },
     {
       "id": 9,
       "icon": "assets/clicker/upClicker/9-magma-drak.png",
       "name": "Magma drak",
-      "baseCost": 250,
+      "baseCost": 2500000,
       "income": 1250,
-      "costMultiplier": 1.55
+      "costMultiplier": 1.19
     },
     {
       "id": 10,
       "icon": "assets/clicker/upClicker/10-magman.png",
       "name": "Magman",
-      "baseCost": 10,
-      "income": 50,
-      "costMultiplier": 1.6
+      "baseCost": 10000000,
+      "income": 2500,
+      "costMultiplier": 1.2
     },
     {
       "id": 11,
       "icon": "assets/clicker/upClicker/11-fae-warrior.png",
       "name": "Fae warrior",
-      "baseCost": 50,
-      "income": 250,
-      "costMultiplier": 1.65
+      "baseCost": 50000000,
+      "income": 5000,
+      "costMultiplier": 1.21
     },
     {
       "id": 12,
       "icon": "assets/clicker/upClicker/12-fae-queen.png",
       "name": "Fae queen",
-      "baseCost": 250,
-      "income": 1250,
-      "costMultiplier": 1.7
+      "baseCost": 250000000,
+      "income": 12500,
+      "costMultiplier": 1.22
     },
     {
       "id": 13,
       "icon": "assets/clicker/upClicker/13-fae-king.png",
       "name": "Fae king",
-      "baseCost": 10,
-      "income": 50,
-      "costMultiplier": 1.75
+      "baseCost": 1000000000,
+      "income": 25000,
+      "costMultiplier": 1.23
     },
     {
       "id": 14,
       "icon": "assets/clicker/upClicker/14-ladybug-invader.png",
       "name": "Ladybug invader",
-      "baseCost": 50,
-      "income": 250,
-      "costMultiplier": 1.8
+      "baseCost": 5000000000,
+      "income": 50000,
+      "costMultiplier": 1.24
     },
     {
       "id": 15,
       "icon": "assets/clicker/upClicker/15-shredclaw-shadow.png",
       "name": "Shredclaw shadow",
-      "baseCost": 250,
-      "income": 1250,
-      "costMultiplier": 1.85
+      "baseCost": 25000000000,
+      "income": 125000,
+      "costMultiplier": 1.25
     },
     {
       "id": 16,
       "icon": "assets/clicker/upClicker/16-shadow-skyscourge.png",
       "name": "Shadow skyscourge",
-      "baseCost": 10,
-      "income": 50,
-      "costMultiplier": 1.9
+      "baseCost": 100000000000,
+      "income": 250000,
+      "costMultiplier": 1.26
     },
     {
       "id": 17,
       "icon": "assets/clicker/upClicker/17-spike-walker.png",
       "name": "Spike walker",
-      "baseCost": 50,
-      "income": 250,
-      "costMultiplier": 1.95
+      "baseCost": 500000000000,
+      "income": 500000,
+      "costMultiplier": 1.27
     },
     {
       "id": 18,
       "icon": "assets/clicker/upClicker/18-weeping-prophet.png",
       "name": "Weeping prophet",
-      "baseCost": 250,
-      "income": 1250,
-      "costMultiplier": 2.0
+      "baseCost": 2500000000000,
+      "income": 1250000,
+      "costMultiplier": 1.28
     },
     {
       "id": 19,
       "icon": "assets/clicker/upClicker/19-vengeful-pinata-god.png",
       "name": "Vengeful pinata god",
-      "baseCost": 10,
-      "income": 50,
-      "costMultiplier": 2.05
+      "baseCost": 10000000000000,
+      "income": 2500000,
+      "costMultiplier": 1.29
     },
     {
       "id": 20,
       "icon": "assets/clicker/upClicker/20-shadow-hydrakken.png",
       "name": "Shadow hydrakken",
-      "baseCost": 50,
-      "income": 250,
-      "costMultiplier": 2.1
+      "baseCost": 50000000000000,
+      "income": 5000000,
+      "costMultiplier": 1.3
     },
     {
       "id": 21,
       "icon": "assets/clicker/upClicker/21-darknik-dreadnought-Mk-II.png",
       "name": "Darknik dreadnought",
-      "baseCost": 250,
-      "income": 1250,
-      "costMultiplier": 2.15
+      "baseCost": 250000000000000,
+      "income": 12500000,
+      "costMultiplier": 1.31
     },
     {
       "id": 22,
       "icon": "assets/clicker/upClicker/22-daughter-of-the-moon.png",
       "name": "Daughter of the moon",
-      "baseCost": 10,
-      "income": 50,
-      "costMultiplier": 2.2
+      "baseCost": 1000000000000000,
+      "income": 25000000,
+      "costMultiplier": 1.32
     }
   ],
   "heroesData": [
