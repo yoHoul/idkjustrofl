@@ -21,14 +21,20 @@ export class GameDataService {
     map(([game, user]) => ({ game, user }))
   );
 
+  private isLoaded = false;
+
   constructor(private api: ApiDataStorageService) { }
 
   loadAll(): void {
+    if (this.isLoaded) return;
+    
     this.api.getGameData().subscribe(data => this.gameDataSubject.next(data));
     this.api.getUserGameData().subscribe(data => {
       this.userDataSubject.next(data);
       this.startIncomeLoop();
     });
+    
+    this.isLoaded = true;
   }
 
   incrementBalance(delta: number): void {

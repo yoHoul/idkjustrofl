@@ -1,7 +1,78 @@
-p {
-    color: var(--text-main-color);
+:host {
+    display: block; 
+    height: 100%; 
 }
 
 .container {
-    background-color: grey;
+    height: 100%;
+}
+
+.scroll {
+    height: 100%;
+    overflow-y: auto;
+    box-sizing:
+    border-box;
+}
+
+.content {
+    box-sizing: border-box;
+}
+
+.accordion-tab {
+    align-content: center;
+    height: 64px;
+    border: 3px solid var(--border-main-color);
+    border-top: none;
+    cursor: pointer;
+}
+
+.first-tab {
+    border-top: 3px solid var(--border-main-color);
+}
+
+.upgrade-item, .hero-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.upgrade-icon, .hero-icon {
+    padding: 6px;
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+}
+
+.text {
+    color: var(--text-main-color);
+    user-select: none;
+    line-height: 1;
+}
+
+.title {
+    font-size: 26px;
+}
+
+.description {
+    font-size: 22px;
+}
+
+.only-name {
+    align-content: center;
+    font-size: 28px;
+}
+
+.upgrade-info, .hero-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.left-side {
+    text-align: left;
+}
+
+.right-side {
+    padding-right: 10px;
 }
