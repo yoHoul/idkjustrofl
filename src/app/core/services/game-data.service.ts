@@ -40,11 +40,6 @@ export class GameDataService {
     });
   }
 
-  // клик всегда прибавляет 1
-  addClick(): void {
-    this.incrementBalance(1);
-  }
-
   private startIncomeLoop(): void {
     if (this.incomeSub) return;
     this.incomeSub = interval(1000).subscribe(() => {
