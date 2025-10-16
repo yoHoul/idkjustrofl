@@ -12,8 +12,8 @@ import { IAllGameData, IClickerGameData, IHeroesData } from '../../shared/types/
   imports: [AccordionComponent, AsyncPipe],
 })
 export class ClickerPageComponent implements OnInit {
-  balance$!: Observable<number>;
-  income$!: Observable<number>;
+  balance$!: Observable<bigint>;
+  income$!: Observable<bigint>;
   gameData$!: Observable<IAllGameData | null>;
   clickerData: IClickerGameData[] = [];
   heroesData: IHeroesData[] = [];
@@ -36,10 +36,10 @@ export class ClickerPageComponent implements OnInit {
   }
 
   imgClick() {
-    this.gameData.incrementBalance(1);
+    this.gameData.incrementBalance(1n);
   }
 
-  formatNumber(num: number): string {
+  formatNumber(num: bigint): string {
     return this.gameData.formatNumber(num);
   }
 

@@ -8,22 +8,22 @@ export interface IClickerGameData {
     id: number;
     icon: string;
     name: string;
-    baseCost: number;
-    income: number;
-    costMultiplier: number; // 1.1 < n < 1.3
+    baseCost: bigint;
+    income: bigint;
+    costMultiplier: number;
 }
 
 export interface IHeroesData {
     id: number;
     icon: string;
     name: string;
-    baseCost: number;
+    baseCost: bigint;
 }
 
 // данные игрока
 export interface IUserGameData {
-    balance: number;
-    totalIncome: number;
+    balance: bigint;
+    totalIncome: bigint;
     haveAccess: IUserAccessList;
     clickerData: IUserClickerGameData[];
     heroesData?: IUserHeroesData[];
