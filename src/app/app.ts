@@ -20,7 +20,6 @@ import { GameDataService } from './core/services/game-data.service';
 export class App implements OnInit {
   protected readonly title = signal('troveClicker');
 
-  private subscription?: Subscription;
   isDark!: boolean;
 
   constructor(private gameDataService: GameDataService) {}

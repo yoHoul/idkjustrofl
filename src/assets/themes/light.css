@@ -7,6 +7,9 @@
   --text-main-color: #000000;
   --text-secondary-color: #7e7e7e;
 
+  /* цвета бордера */
+  --border-main-color: #000000;
+
   /* цвета для тайги */
   --tui-tabs-border: #e3e7ef;
 }

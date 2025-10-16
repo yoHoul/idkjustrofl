@@ -1,5 +1,40 @@
 <div class="container">
-    <p>
-        Тут аккордион
-    </p>
+    <tui-scrollbar class="box">
+        <div class="content">
+            <!-- clicker -->
+            @for (upgrade of clickerData; track upgrade.id) {
+            <div class="accordion-tab" [class.first-tab]="$first">
+                <div class="upgrade-item">
+                    <img [src]="upgrade.icon" [alt]="upgrade.name" class="upgrade-icon">
+                    <div class="upgrade-info">
+                        <div class="left-side">
+                            <p class="text title">{{ upgrade.name }}</p>
+                            <p class="text description">+{{ upgrade.income }} Flux/sec</p>
+                        </div>
+                        <div class="right-side">
+                            <p class="text title">Cost:</p>
+                            <p class="text title">{{ upgrade.baseCost }} Flux</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            
+            <!-- heroes -->
+            @for (hero of heroesData; track hero.id) {
+            <div class="accordion-tab" [class.first-tab]="$first">
+                <div class="hero-item">
+                    <img [src]="hero.icon" [alt]="hero.name" class="hero-icon">
+                    <div class="hero-info">
+                        <p class="text only-name">{{ hero.name }}</p>
+                        <div class="right-side">
+                            <p class="text title">Cost:</p>
+                            <p class="text title">{{ hero.baseCost }} Flux</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </tui-scrollbar>
 </div>
