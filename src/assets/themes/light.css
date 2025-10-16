@@ -10,6 +10,9 @@
   /* цвета бордера */
   --border-main-color: #000000;
 
+  /* цвет ховера */
+  --hover-main-color: #e0e0e0;
+
   /* цвета для тайги */
   --tui-tabs-border: #e3e7ef;
 }

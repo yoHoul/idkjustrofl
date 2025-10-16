@@ -46,6 +46,60 @@ export class GameDataService {
     });
   }
 
+  buyUpgrade(upgradeId: number): boolean {
+    const gameData = this.gameDataSubject.value;
+    const userData = this.userDataSubject.value;
+    
+    if (!gameData || !userData) return false;
+    
+    const upgrade = gameData.clickerData.find(u => u.id === upgradeId);
+    const userUpgrade = userData.clickerData.find(u => u.id === upgradeId);
+    
+    if (!upgrade || !userUpgrade) return false;
+    
+    // экспоненциальная прогрессия цен
+    const currentCost = Math.floor(upgrade.baseCost * Math.pow(upgrade.costMultiplier, userUpgrade.amount));
+    
+    if (userData.balance < currentCost) return false;
+    
+    const newUserData = {
+      ...userData,
+      balance: userData.balance - currentCost,
+      clickerData: userData.clickerData.map(u => 
+        u.id === upgradeId 
+          ? { ...u, amount: u.amount + 1 }
+          : u
+      )
+    };
+    
+    newUserData.totalIncome = this.calculateTotalIncome(gameData, newUserData);
+    
+    this.userDataSubject.next(newUserData);
+    return true;
+  }
+
+  getUpgradeCost(upgradeId: number): number {
+    const gameData = this.gameDataSubject.value;
+    const userData = this.userDataSubject.value;
+    
+    if (!gameData || !userData) return 0;
+    
+    const upgrade = gameData.clickerData.find(u => u.id === upgradeId);
+    const userUpgrade = userData.clickerData.find(u => u.id === upgradeId);
+    
+    if (!upgrade || !userUpgrade) return 0;
+    
+    return Math.floor(upgrade.baseCost * Math.pow(upgrade.costMultiplier, userUpgrade.amount));
+  }
+
+  private calculateTotalIncome(gameData: IAllGameData, userData: IUserGameData): number {
+    return userData.clickerData.reduce((total, userUpgrade) => {
+      const upgrade = gameData.clickerData.find(u => u.id === userUpgrade.id);
+      if (!upgrade) return total;
+      return total + (upgrade.income * userUpgrade.amount);
+    }, 0);
+  }
+
   private startIncomeLoop(): void {
     if (this.incomeSub) return;
     this.incomeSub = interval(1000).subscribe(() => {

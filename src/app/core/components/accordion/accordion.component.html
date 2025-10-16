@@ -3,7 +3,7 @@
         <div class="content">
             <!-- clicker -->
             @for (upgrade of clickerData; track upgrade.id) {
-            <div class="accordion-tab" [class.first-tab]="$first">
+            <div class="accordion-tab" [class.first-tab]="$first" (click)="buyUpgrade(upgrade.id)">
                 <div class="upgrade-item">
                     <img [src]="upgrade.icon" [alt]="upgrade.name" class="upgrade-icon">
                     <div class="upgrade-info">
@@ -13,7 +13,7 @@
                         </div>
                         <div class="right-side">
                             <p class="text title">Cost:</p>
-                            <p class="text title">{{ upgrade.baseCost }} Flux</p>
+                            <p class="text title">{{ getUpgradeCost(upgrade.id) }} Flux</p>
                         </div>
                     </div>
                 </div>
