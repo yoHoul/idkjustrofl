@@ -39,4 +39,8 @@ export class ClickerPageComponent implements OnInit {
     this.gameData.incrementBalance(1);
   }
 
+  formatNumber(num: number): string {
+    return this.gameData.formatNumber(num);
+  }
+
 }

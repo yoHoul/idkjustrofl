@@ -23,4 +23,8 @@ export class AccordionComponent {
   getUpgradeCost(upgradeId: number): number {
     return this.gameData.getUpgradeCost(upgradeId);
   }
+
+  formatNumber(num: number): string {
+    return this.gameData.formatNumber(num);
+  }
 }

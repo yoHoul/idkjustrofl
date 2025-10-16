@@ -9,11 +9,11 @@
                     <div class="upgrade-info">
                         <div class="left-side">
                             <p class="text title">{{ upgrade.name }}</p>
-                            <p class="text description">+{{ upgrade.income }} Flux/sec</p>
+                            <p class="text description">+{{ formatNumber(upgrade.income) }} Flux/sec</p>
                         </div>
                         <div class="right-side">
                             <p class="text title">Cost:</p>
-                            <p class="text title">{{ getUpgradeCost(upgrade.id) }} Flux</p>
+                            <p class="text title">{{ formatNumber(getUpgradeCost(upgrade.id)) }} Flux</p>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <p class="text only-name">{{ hero.name }}</p>
                         <div class="right-side">
                             <p class="text title">Cost:</p>
-                            <p class="text title">{{ hero.baseCost }} Flux</p>
+                            <p class="text title">{{ formatNumber(hero.baseCost) }} Flux</p>
                         </div>
                     </div>
                 </div>
