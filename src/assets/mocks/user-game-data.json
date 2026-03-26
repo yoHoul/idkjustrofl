@@ -1,35 +1,40 @@
 {
   "balance": 0,
-  "totalIncome": 0,
   "haveAccess": {
     "heroes": false
   },
   "clickerData": [
-    { "id": 1, "amount": 0 },
-    { "id": 2, "amount": 0 },
-    { "id": 3, "amount": 0 },
-    { "id": 4, "amount": 0 },
-    { "id": 5, "amount": 0 },
-    { "id": 6, "amount": 0 },
-    { "id": 7, "amount": 0 },
-    { "id": 8, "amount": 0 },
-    { "id": 9, "amount": 0 },
-    { "id": 10, "amount": 0 },
-    { "id": 11, "amount": 0 },
-    { "id": 12, "amount": 0 },
-    { "id": 13, "amount": 0 },
-    { "id": 14, "amount": 0 },
-    { "id": 15, "amount": 0 },
-    { "id": 16, "amount": 0 },
-    { "id": 17, "amount": 0 },
-    { "id": 18, "amount": 0 },
-    { "id": 19, "amount": 0 },
-    { "id": 20, "amount": 0 },
-    { "id": 21, "amount": 0 },
-    { "id": 22, "amount": 0 }
-  ],
-  "heroesData": [
-    { "id": 101, "haveIt": false }
+    {
+      "clickerUps": [
+        { "id": 1, "amount": 1 },
+        { "id": 2, "amount": 1 },
+        { "id": 3, "amount": 1 },
+        { "id": 4, "amount": 1 },
+        { "id": 5, "amount": 1 },
+        { "id": 6, "amount": 1 },
+        { "id": 7, "amount": 1 },
+        { "id": 8, "amount": 1 },
+        { "id": 9, "amount": 1 },
+        { "id": 10, "amount": 1 },
+        { "id": 11, "amount": 1 },
+        { "id": 12, "amount": 1 },
+        { "id": 13, "amount": 1 },
+        { "id": 14, "amount": 1 },
+        { "id": 15, "amount": 1 },
+        { "id": 16, "amount": 1 },
+        { "id": 17, "amount": 1 },
+        { "id": 18, "amount": 1 },
+        { "id": 19, "amount": 1 },
+        { "id": 20, "amount": 1 },
+        { "id": 21, "amount": 1 },
+        { "id": 22, "amount": 1 }
+      ]
+    },
+    {
+      "heroesUps": [
+        { "id": 1, "haveIt": false }
+      ]
+    }
   ]
 }
 

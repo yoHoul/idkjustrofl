@@ -1,7 +1,13 @@
 // данные системы
 export interface IAllGameData {
-    clickerData: IClickerGameData[];
-    heroesData?: IHeroesData[];
+    clickerData: [
+        {
+            clickerUps: IClickerGameData[];
+        },
+        {
+            heroesUps: IHeroesData[];
+        }
+    ];
 }
 
 export interface IClickerGameData {
@@ -23,10 +29,15 @@ export interface IHeroesData {
 // данные игрока
 export interface IUserGameData {
     balance: bigint;
-    totalIncome: bigint;
     haveAccess: IUserAccessList;
-    clickerData: IUserClickerGameData[];
-    heroesData?: IUserHeroesData[];
+    clickerData: [
+        {
+            clickerUps: IUserClickerGameData[];
+        },
+        {
+            heroesUps: IUserHeroesData[];
+        }
+    ];
 }
 
 export interface IUserAccessList {

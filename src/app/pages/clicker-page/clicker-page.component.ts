@@ -29,7 +29,7 @@ export class ClickerPageComponent implements OnInit {
     
     this.gameData$.subscribe(data => {
       if (data) {
-        this.heroesData = data.heroesData || [];
+        this.heroesData = data.clickerData[1]?.heroesUps || [];
       }
     });
     
