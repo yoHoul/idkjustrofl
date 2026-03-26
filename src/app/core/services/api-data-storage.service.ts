@@ -25,25 +25,33 @@ export class ApiDataStorageService {
   }
 
   private convertToBigInt(data: any): IAllGameData {
+    const clickerUps = data.clickerData?.[0]?.clickerUps ?? [];
+    const heroesUps = data.clickerData?.[1]?.heroesUps ?? [];
+
     return {
       ...data,
-      clickerData: data.clickerData.map((item: any) => ({
-        ...item,
-        baseCost: BigInt(item.baseCost),
-        income: BigInt(item.income)
-      })),
-      heroesData: data.heroesData?.map((item: any) => ({
-        ...item,
-        baseCost: BigInt(item.baseCost)
-      }))
+      clickerData: [
+        {
+          clickerUps: clickerUps.map((item: any) => ({
+            ...item,
+            baseCost: BigInt(item.baseCost),
+            income: BigInt(item.income)
+          }))
+        },
+        {
+          heroesUps: heroesUps.map((item: any) => ({
+            ...item,
+            baseCost: BigInt(item.baseCost)
+          }))
+        }
+      ]
     };
   }
 
   private convertUserDataToBigInt(data: any): IUserGameData {
     return {
       ...data,
-      balance: BigInt(data.balance),
-      totalIncome: BigInt(data.totalIncome)
+      balance: BigInt(data.balance)
     };
   }
 

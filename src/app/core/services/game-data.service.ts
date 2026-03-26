@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, combineLatest, interval, map } from 'rxjs';
-import { IAllGameData, IUserGameData, IClickerGameData } from '../../shared/types/game-data';
+import { IAllGameData, IUserGameData, IClickerGameData, IUserClickerGameData } from '../../shared/types/game-data';
 import { ApiDataStorageService } from './api-data-storage.service';
 
 @Injectable({
@@ -13,7 +13,12 @@ export class GameDataService {
   gameData$ = this.gameDataSubject.asObservable();
   userData$ = this.userDataSubject.asObservable();
   balance$ = this.userData$.pipe(map(u => u?.balance ?? 0n));
-  income$ = this.userData$.pipe(map(u => u?.totalIncome ?? 0n));
+  income$ = combineLatest([this.gameData$, this.userData$]).pipe(
+    map(([gameData, userData]) => {
+      if (!gameData || !userData) return 0n;
+      return this.calculateTotalIncome(gameData, userData);
+    })
+  );
   private incomeSub?: Subscription;
 
 
@@ -25,10 +30,20 @@ export class GameDataService {
 
   constructor(private api: ApiDataStorageService) { }
 
+  private getClickerUps(gameData: IAllGameData): IClickerGameData[] {
+    return gameData.clickerData[0]?.clickerUps ?? [];
+  }
+
+  private getUserClickerUps(userData: IUserGameData): IUserClickerGameData[] {
+    return userData.clickerData[0]?.clickerUps ?? [];
+  }
+
   loadAll(): void {
     if (this.isLoaded) return;
     
-    this.api.getGameData().subscribe(data => this.gameDataSubject.next(data));
+    this.api.getGameData().subscribe(data => {
+      this.gameDataSubject.next(data);
+    });
     this.api.getUserGameData().subscribe(data => {
       this.userDataSubject.next(data);
       this.startIncomeLoop();
@@ -52,8 +67,10 @@ export class GameDataService {
     
     if (!gameData || !userData) return false;
     
-    const upgrade = gameData.clickerData.find(u => u.id === upgradeId);
-    const userUpgrade = userData.clickerData.find(u => u.id === upgradeId);
+    const clickerUps = this.getClickerUps(gameData);
+    const upgrade = clickerUps.find(u => u.id === upgradeId);
+    const userClickerUps = this.getUserClickerUps(userData);
+    const userUpgrade = userClickerUps.find(u => u.id === upgradeId);
     
     if (!upgrade || !userUpgrade) return false;
     
@@ -63,17 +80,22 @@ export class GameDataService {
     
     if (userData.balance < currentCost) return false;
     
+    const updatedClickerData: IUserGameData['clickerData'] = [
+      {
+        clickerUps: userClickerUps.map(u =>
+          u.id === upgradeId
+            ? { ...u, amount: u.amount + 1 }
+            : u
+        )
+      },
+      userData.clickerData[1]
+    ];
+
     const newUserData = {
       ...userData,
       balance: userData.balance - currentCost,
-      clickerData: userData.clickerData.map(u => 
-        u.id === upgradeId 
-          ? { ...u, amount: u.amount + 1 }
-          : u
-      )
+      clickerData: updatedClickerData
     };
-    
-    newUserData.totalIncome = this.calculateTotalIncome(gameData, newUserData);
     
     this.userDataSubject.next(newUserData);
     return true;
@@ -85,8 +107,10 @@ export class GameDataService {
     
     if (!gameData || !userData) return 0n;
     
-    const upgrade = gameData.clickerData.find(u => u.id === upgradeId);
-    const userUpgrade = userData.clickerData.find(u => u.id === upgradeId);
+    const clickerUps = this.getClickerUps(gameData);
+    const upgrade = clickerUps.find(u => u.id === upgradeId);
+    const userClickerUps = this.getUserClickerUps(userData);
+    const userUpgrade = userClickerUps.find(u => u.id === upgradeId);
     
     if (!upgrade || !userUpgrade) return 0n;
     
@@ -95,8 +119,10 @@ export class GameDataService {
   }
 
   private calculateTotalIncome(gameData: IAllGameData, userData: IUserGameData): bigint {
-    return userData.clickerData.reduce((total, userUpgrade) => {
-      const upgrade = gameData.clickerData.find(u => u.id === userUpgrade.id);
+    const clickerUps = this.getClickerUps(gameData);
+    const userClickerUps = this.getUserClickerUps(userData);
+    return userClickerUps.reduce((total, userUpgrade) => {
+      const upgrade = clickerUps.find(u => u.id === userUpgrade.id);
       if (!upgrade) return total;
       return total + (upgrade.income * BigInt(userUpgrade.amount));
     }, 0n);
@@ -105,11 +131,12 @@ export class GameDataService {
   private startIncomeLoop(): void {
     if (this.incomeSub) return;
     this.incomeSub = interval(1000).subscribe(() => {
-      const u = this.userDataSubject.value;
-      if (!u) return;
-      if (u.totalIncome && u.totalIncome !== 0n) {
-        this.incrementBalance(u.totalIncome);
-      }
+      const gameData = this.gameDataSubject.value;
+      const userData = this.userDataSubject.value;
+      if (!gameData || !userData) return;
+
+      const income = this.calculateTotalIncome(gameData, userData);
+      if (income !== 0n) this.incrementBalance(income);
     });
   }
 
@@ -143,11 +170,13 @@ export class GameDataService {
     const gameData = this.gameDataSubject.value;
     if (!gameData) return false;
     
-    const currentIndex = gameData.clickerData.findIndex(u => u.id === upgradeId);
+    const clickerUps = this.getClickerUps(gameData);
+    const currentIndex = clickerUps.findIndex(u => u.id === upgradeId);
     if (currentIndex <= 0) return false;
     
-    const previousUpgradeId = gameData.clickerData[currentIndex - 1].id;
-    const previousUserUpgrade = userData.clickerData.find(u => u.id === previousUpgradeId);
+    const previousUpgradeId = clickerUps[currentIndex - 1].id;
+    const userClickerUps = this.getUserClickerUps(userData);
+    const previousUserUpgrade = userClickerUps.find(u => u.id === previousUpgradeId);
     
     // предыдущий ап должен быть куплен
     return previousUserUpgrade ? previousUserUpgrade.amount > 0 : false;
@@ -159,7 +188,8 @@ export class GameDataService {
     
     if (!gameData || !userData) return [];
     
-    return gameData.clickerData.filter(upgrade => this.isUpgradeUnlocked(upgrade.id));
+    const clickerUps = this.getClickerUps(gameData);
+    return clickerUps.filter(upgrade => this.isUpgradeUnlocked(upgrade.id));
   }
 
 }
